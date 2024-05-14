@@ -2,9 +2,7 @@
   <div style="flex: 1;">
   
 ## Overview
-Chitchat is a comprehensive social app that offers Google, email/password, phone, and Facebook authentication.
-Users can seamlessly exchange video, audio, texts, images, and documents. Key features include unread message
-alerts, friend requests, and a search function. Additionally, users can post status updates. Firebase serves as the backend, ensuring a reliable and efficient platform.
+This is a user profile page displaying data fetched from an API. In addition to the user's profile picture and name, default details are included. The bottom bar currently only navigates to the homepage as no other pages have been added yet. The user's posts also show the counts of comments and likes on this page.
 
   </div>
   <div style="flex: 1;">
