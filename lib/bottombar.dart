@@ -15,6 +15,7 @@ class BottomNavBar extends StatelessWidget {
       controller: _controller,
       screens: _buildScreens(),
       items: _bottomBarItems(),
+      navBarStyle: NavBarStyle.style5,
       confineInSafeArea: true,
       backgroundColor: const Color.fromARGB(191, 0, 72, 131),
       stateManagement: true,
