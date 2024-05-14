@@ -6,6 +6,7 @@ class CustomButton extends StatelessWidget {
   const CustomButton(
       {super.key,
       required this.height,
+      required this.color,
       required this.width,
       required this.name,
       required this.onTap});
@@ -13,6 +14,7 @@ class CustomButton extends StatelessWidget {
   final double height;
   final double width;
   final String name;
+  final Color color;
   final void Function()? onTap;
 
   @override
@@ -25,12 +27,12 @@ class CustomButton extends StatelessWidget {
           onPressed: onTap,
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(
-                  const Color.fromARGB(255, 0, 72, 131)),
+                  color),
               shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(17)))),
           child: Text(name,
-              style: GoogleFonts.urbanist(
-                  fontWeight: FontWeight.bold,
+              style: GoogleFonts.montserrat(
+                  fontWeight: FontWeight.w500,
                   fontSize: 15,
                   color: Colors.white)),
         ));

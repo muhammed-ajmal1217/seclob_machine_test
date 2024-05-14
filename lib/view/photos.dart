@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:seclob_task/controller/api_provider.dart';
 
@@ -7,33 +8,31 @@ class PhotosScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Consumer<ApiProvider>(
       builder: (context, value, child) {
         return GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3, crossAxisSpacing: 6, mainAxisSpacing: 8),
+              crossAxisCount: 3, crossAxisSpacing: 4, mainAxisSpacing: 4),
           itemCount: value.datas!.length,
           itemBuilder: (context, index) {
             final data = value.datas![index];
-            print('${data.likeCount}');
-
             return Padding(
               padding: const EdgeInsets.only(bottom: 5),
               child: Stack(
                 children: [
-                  SizedBox(
-                    height: 300,
-                    width: 300,
-                    child: ClipRRect(
+                  Container(
+                    height: size.height*0.5,
+                    width: size.width*0.4,
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.network(
-                        '${data.filePath}',
+                      image: DecorationImage(
                         fit: BoxFit.cover,
-                      ),
+                        image: NetworkImage('${data.filePath}'))
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.end,

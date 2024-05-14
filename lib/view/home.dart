@@ -1,23 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:seclob_task/controller/api_provider.dart';
 import 'package:seclob_task/view/photos.dart';
 import 'package:seclob_task/view/videos.dart';
 import 'package:seclob_task/view/widgets/custom_button.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-   Widget build(BuildContext context) {
-    final pro = Provider.of<ApiProvider>(context, listen: true);
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
+  void initState() {
+    super.initState();
+    Provider.of<ApiProvider>(context, listen: false).fetchData();
+  }
+
+  final followStyle = GoogleFonts.poppins(fontWeight: FontWeight.w500,color:Color(0xff1E3167),fontSize:20);
+  final followTextStyle = TextStyle(color: Color(0xff1E3167).withOpacity(0.6));
+  var gradient = LinearGradient(
+      begin: Alignment.bottomCenter,
+      end: Alignment.topCenter,
+      colors: [
+        Color(0xff044770).withOpacity(0.2),
+        Color(0xffD6EEE1).withOpacity(0.28),
+      ]);
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.only(top: 50, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 50, left: 10, right: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -27,23 +46,23 @@ class HomePage extends StatelessWidget {
                   Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: const Color.fromARGB(255, 219, 236, 237)),
+                        gradient: gradient),
                     child: IconButton(
                         onPressed: () {},
                         icon: const Icon(
                           FontAwesomeIcons.share,
-                          color: Colors.black,
+                          color: Color(0xff1E3167),
                         )),
                   ),
                   Container(
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        color: const Color.fromARGB(255, 219, 236, 237)),
+                        gradient: gradient),
                     child: IconButton(
                         onPressed: () {},
                         icon: const Icon(
                           Icons.more_horiz_outlined,
-                          color: Colors.black,
+                          color: Color(0xff1E3167),
                         )),
                   )
                 ],
@@ -66,8 +85,7 @@ class HomePage extends StatelessWidget {
                                   child: Image.asset(
                                     'assets/user_1144760.png',
                                     fit: BoxFit.cover,
-                                  )
-                                  ),
+                                  )),
                             )
                           : SizedBox(
                               height: 100,
@@ -77,42 +95,46 @@ class HomePage extends StatelessWidget {
                                   child: Image.network(
                                     '${profile[0]}',
                                     fit: BoxFit.cover,
-                                  )
-                                  ),
+                                  )),
                             );
                     }),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 30, right: 10),
-                      child: Column(
-                        children: [
-                          Text(
-                            '50',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text('post')
-                        ],
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30, top: 10),
+                      child: SizedBox(
+                        height: size.height * 0.070,
+                        width: size.width * 0.53,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  '50',
+                                  style: followStyle,
+                                ),
+                                Text('Post',style: followTextStyle,)
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text('564',
+                                    style:followStyle
+                                        ),
+                                Text('Followers',style:followTextStyle ,)
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Text('564',
+                                    style:
+                                        followStyle),
+                                Text('Following',style: followTextStyle,)
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Column(
-                        children: [
-                          Text('564',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text('Followers')
-                        ],
-                      ),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 10, right: 10),
-                      child: Column(
-                        children: [
-                          Text('564',
-                              style: TextStyle(fontWeight: FontWeight.bold)),
-                          Text('Following')
-                        ],
-                      ),
-                    )
                   ],
                 ),
               ),
@@ -121,47 +143,55 @@ class HomePage extends StatelessWidget {
                 child: Consumer<ApiProvider>(builder: (context, value, child) {
                   final name = value.datas!.map((e) => e.firstName).toList();
                   return name.isEmpty
-                      ? Text('')
+                      ? const Text('')
                       : Text(
                           '${name[0]}',
-                          style: const TextStyle(fontWeight: FontWeight.bold),
+                          style: GoogleFonts.montserrat(
+                              fontWeight: FontWeight.w500,fontSize:18,color:Color(0xff1E3167)),
                         );
                 }),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text('Photographer'),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  'Photographer',
+                  style: GoogleFonts.montserrat(color:Color(0xff1E3167),fontSize:13),
+                ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text('You are beautiful, and'),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text('Im here to capture it'),
+              Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Text(
+                  '🌟You are beautiful, and\nIm here to capture it🌟',
+                  style: GoogleFonts.montserrat(color:Color(0xff1E3167)),
+                ),
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomButton(
-                    height: 55,
-                    width: 130,
+                    height: size.height * 0.075,
+                    width: size.width * 0.37,
                     onTap: () {},
                     name: "Edit Profile",
+                    color: const Color(0xff184AC0),
                   ),
                   CustomButton(
-                    height: 55,
-                    width: 130,
+                    height: size.height * 0.075,
+                    width: size.width * 0.37,
                     onTap: () {},
                     name: "Wallet",
+                    color: const Color(0xff28426B),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, left: 20),
+                    padding: const EdgeInsets.only(top: 10, left: 10),
                     child: Container(
+                        height: size.height * 0.065,
+                        width: size.width * 0.13,
                         decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 0, 72, 131),
+                            color: const Color(0xff184AC0).withOpacity(0.6),
                             borderRadius: BorderRadius.circular(20)),
                         child: IconButton(
-                          onPressed: (){},
+                          onPressed: () {},
                           icon: const Icon(
                             Icons.call,
                             color: Colors.white,
@@ -170,7 +200,11 @@ class HomePage extends StatelessWidget {
                   )
                 ],
               ),
-              const TabBar(tabs: [
+               TabBar(
+                labelStyle: GoogleFonts.montserrat(fontWeight:FontWeight.w600,color:Color(0xffA7ACD0)),
+                indicatorColor: Color(0xffA7ACD0),
+                labelColor: Color(0xffA7ACD0),
+                tabs: [
                 Tab(
                   text: 'Photos',
                 ),
