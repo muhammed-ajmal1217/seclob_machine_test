@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(50),
                                   child: Image.asset(
-                                    'assets/images/blank-profile-picture-973460_1280.png',
+                                    'assets/user_1144760.png',
                                     fit: BoxFit.cover,
                                   )
                                   ),
