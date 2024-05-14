@@ -1,16 +1,16 @@
-# seclob_task
+<div style="display: flex; flex-direction: row;">
+  <div style="flex: 1;">
+  
+## Overview
+Chitchat is a comprehensive social app that offers Google, email/password, phone, and Facebook authentication.
+Users can seamlessly exchange video, audio, texts, images, and documents. Key features include unread message
+alerts, friend requests, and a search function. Additionally, users can post status updates. Firebase serves as the backend, ensuring a reliable and efficient platform.
 
-A new Flutter project.
+  </div>
+  <div style="flex: 1;">
 
-## Getting Started
+<img src=https://github.com/muhammed-ajmal1217/seclob_machine_test/assets/136672051/e1774995-20d3-4a09-91ea-de8f1fc387ba alt="Screenshot 1" width="200"/>
+  
+  </div>
+</div>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
